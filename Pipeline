@@ -1,0 +1,37 @@
+#Assessing the quality and completeness of metagenome-assembled viral genomes with CheckV
+conda activate checkv
+export CHECKVDB="path_to_database/checkv-db-v1.0"
+IN_DIR="path_to_folder_with_virsorter2_output_fasta_files"
+OUT_DIR="path_to_checkv_output_folder"
+cd $IN_DIR
+for f in *.fa
+do
+myout_dir=$OUT_DIR/${f%%.fa}
+checkv end_to_end $f $myout_dir -t 10
+done
+#Recognising prokaryotic genes and identifies translation initiation sites with Prodigal
+conda activate prodigal
+IN_DIR="path_to_folder_with_virsorter2_output_fasta_files"
+OUT_DIR="path_to_prodigal_output_folder"
+mkdir $OUT_DIR
+cd $IN_DIR
+for f in *.fa
+do
+prodigal_OUT="$OUT_DIR/${f%%.fa}.gff"
+prodigal_FAA="$OUT_DIR/${f%%.fa}.faa"
+prodigal_FNA="$OUT_DIR/${f%%.fa}.fna"
+prodigal -a $prodigal_FAA -d $prodigal_FNA -i $f -o $prodigal_OUT -p meta
+done
+#searching amino acid sequence databases (imvgr, pvog) for viral sequence homologs and kegg for prokaryotic sequences homologs with Hmmer
+conda activate hmmer
+IN_DIR="path_to_folder_with_prodigal_output_fasta_files"
+OUT_DIR="path_to_hmmer_output_folder"
+DATABASE="path_to_kegg/pvog/imgvr_database_indexed_with_hmmer.hmms"
+cd $IN_DIR
+mkdir $OUT_DIR
+for f in *.faa
+do
+OUT_FILE1="${f##VirSorterPred_}"
+OUT_FILE="$OUT_DIR/${OUT_FILE1%%.faa}_annotated_prots.txt"
+hmmscan --tblout $OUT_FILE $DATABASE $f
+done
