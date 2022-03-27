@@ -1,0 +1,20 @@
+#In my case CheckV produced files, that had the same name. In order to separate them and assign the corresponding file to a correct subject, this script was made
+
+!/bin/bash -l
+#make new derictory that will have the renamed files put in
+        RESULT_DIR=/path_to_the_folder_where_renaimed_files_will_be
+mkdir $RESULT_DIR
+#move to that directory
+cd path_to_checkv_results_folder
+#create a string of names, by picking them from the folder/file name
+for folder in common_name_in_checkv_files*
+do
+        SUB_ID=${folder#common_name_to_be_removed_}
+
+#print the list/string to be sure it worked
+echo $SUB_ID
+
+    #give new names for the file
+    cp $folder/quality_summary* $RESULT_DIR/quality_summary_virsorter_${SUB_ID}.tsv
+
+done
