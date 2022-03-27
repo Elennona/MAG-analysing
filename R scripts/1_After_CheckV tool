@@ -1,4 +1,4 @@
-#The tools used in this project give multiple files as a result. Usually each study subject gets at least one file. To combine the files into one, as toremove empty 
+#The tools used in this project give multiple files as a result. Usually each study subject gets at least one file. To combine the files into one, as to remove empty 
 #cells/space produced by CheckV tool for example, I used this code in R
 
 library(tidyverse)
