@@ -1,0 +1,6 @@
+#All tools are used as conda environments. For each tool a new enviroemnt is created and the tool is installed via bioconda
+
+conda create --name tool_name
+sinteractive
+conda activate tool_name
+#install via conda command the needed tool
