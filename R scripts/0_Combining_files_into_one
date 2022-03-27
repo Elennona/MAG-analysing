@@ -1,0 +1,47 @@
+#The tools used in this project give multiple files as a result. Usually each study subject gets at least one file. To combine the files into one, as toremove empty 
+#cells/space produced by CheckV tool for example, I used this code in R
+
+library(tidyverse)
+
+# get file names. Change pattern with your own
+profiles <- sort(list.files(".", pattern=".tsv", full.names = TRUE))
+
+#create empty dataframe
+all_data <- tibble(
+  genome_name=character(),
+  contig_id = character(),
+  contig_length = numeric(),
+  provirus = character(),
+  proviral_length = numeric(),
+  gene_count = numeric(),
+  viral_genes = numeric(),
+  host_genes = numeric(),
+  checkv_quality = character(),
+  miuvig_quality = character(),
+  completeness = numeric(),
+  completeness_method = character(),
+  contamination = numeric(),
+  kmer_freq = numeric(),
+  warnings = character(),
+)
+
+#Change tsv to the common pattern. name parametr tasks name as the name of the file
+for(f in profiles) {
+  name <- unlist(strsplit(basename(f), ".tsv"))
+  #mutating the name parameter as a column genome_name
+  curr_profile <- read_tsv(f) %>% mutate(genome_name=name)
+  
+  if (dim(curr_profile)[1] != 0) {
+    all_data <- add_row(all_data,curr_profile)
+  }
+}
+
+#separate the parametr into separate column
+all_data_final <- all_data %>% 
+  separate(contig_id, sep="\\|\\|", into=c("contig_id", "type_phage"))
+
+all_data_final[c('removable_1','removable_2','programm','subject_ID')]<- str_split_fixed(all_data_final$genome_name, "_", n = 4)
+all_data_final = subset(all_data_final, select = -removable_1)
+all_data_final = subset(all_data_final, select = -removable_2)
+
+write_csv(all_data_final, "VirSorter2_checkV.csv")
