@@ -6,7 +6,7 @@
 
 #Prepare profile database
 conda activate hmmer
-cat *.hmm >> database_all_files_in_one.hmms #catologing all files into one file
+cat hmm_files.hmm >> database_all_files_in_one.hmms #catologing all files into one file
 hmmpress database_all_files_in_one.hmms
 
 
