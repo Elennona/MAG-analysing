@@ -1,0 +1,13 @@
+#Assessing the quality and completeness of metagenome-assembled viral genomes with CheckV
+#database was dowloaded from here: https://bitbucket.org/berkeleylab/checkv/src/master/
+
+conda activate checkv
+export CHECKVDB="path_to_database/checkv-db-v1.0"
+IN_DIR="path_to_folder_with_virsorter2_output_fasta_files"
+OUT_DIR="path_to_checkv_output_folder"
+cd $IN_DIR
+for f in *.fa
+do
+      myout_dir=$OUT_DIR/${f%%.fa}
+      checkv end_to_end $f $myout_dir -t 10
+done
