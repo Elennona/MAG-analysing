@@ -1,5 +1,6 @@
 #This script results and print out a filtered table to be used in R analysis after Hmmer3 has annotated the predicted by Prodigal proteins with a database
 
+library(tidyverse)
 #folder where the imgvr output files in .txt format can be found
 pfam_dir="path_to_Prodigal_output_files"
 #0.1% prosent or below can be found by chance in the metagenome
