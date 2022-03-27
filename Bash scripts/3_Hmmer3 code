@@ -1,0 +1,24 @@
+#searching amino acid sequence databases (imvgr, pvog) for viral sequence homologs and kegg for prokaryotic sequences homologs with Hmmer3
+
+#database imgvr: https://img.jgi.doe.gov/cgi-bin/vr/main.cgi
+#database pvog: https://ftp.ncbi.nlm.nih.gov/pub/kristensen/pVOGs/downloads.html
+#database kegg: https://www.genome.jp/tools/kofamkoala/
+
+#Prepare profile database
+conda activate hmmer
+cat hmm_files.hmm >> database_all_files_in_one.hmms #catologing all files into one file
+hmmpress database_all_files_in_one.hmms
+
+
+conda activate hmmer
+IN_DIR="path_to_folder_with_prodigal_output_fasta_files"
+OUT_DIR="path_to_hmmer_output_folder"
+DATABASE="path_to_kegg/pvog/imgvr_database_indexed_with_hmmer.hmms"
+cd $IN_DIR
+mkdir $OUT_DIR
+for f in *.faa
+do
+    OUT_FILE1="${f##VirSorterPred_}"
+    OUT_FILE="$OUT_DIR/${OUT_FILE1%%.faa}_annotated_prots.txt"
+    hmmscan --tblout $OUT_FILE $DATABASE $f
+done
