@@ -1,0 +1,9 @@
+Create prokaryotic MAGs from metagenomes
+With Virsorter2 recognise viral sequences from a conting inside a bin/MAG
+Check with CheckV the quality of the sequences from fasta files
+Find genes and predict proteins with Prodigal from fasta files
+Annotate found proteins with Hmmer3 with imgvr and/or pvog databases (for viral proteins) and KEGG database (for prokaryotic proteins)
+
+To identify MAGs correctly, each MAG must have unique_name = subject_ID+MAG_ID
+
+For data visualisation use R. The following tolls were installed in supercomputer, and access via terminal Cygwin64 Terminal: Virsorter2, CheckV, Prodigal, Hmmer3.
