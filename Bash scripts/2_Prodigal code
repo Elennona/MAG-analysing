@@ -1,0 +1,14 @@
+#Recognising prokaryotic genes and identifies translation initiation sites with Prodigal
+
+conda activate prodigal
+IN_DIR="path_to_folder_with_virsorter2_output_fasta_files"
+OUT_DIR="path_to_prodigal_output_folder"
+mkdir $OUT_DIR
+cd $IN_DIR
+for f in *.fa
+do
+    prodigal_OUT="$OUT_DIR/${f%%.fa}.gff"
+    prodigal_FAA="$OUT_DIR/${f%%.fa}.faa"
+    prodigal_FNA="$OUT_DIR/${f%%.fa}.fna"
+    prodigal -a $prodigal_FAA -d $prodigal_FNA -i $f -o $prodigal_OUT -p meta
+done
