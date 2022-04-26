@@ -1,0 +1,10 @@
+To run Hmmer3 you will need database presented as a hmm profile. 
+
+1) download the database you need. I used PVOG, KEGG and IMGVR databases
+2) Unzip if needed
+3) cd to folder containing the database
+4) catalogue all files into one file (cat *.hmm >> database_name_all.hmms)
+5) activate hmmer3 environment
+6) hmmpress database_name_all.hmms
+
+#30.3.22 created by ED 
