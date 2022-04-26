@@ -20,7 +20,7 @@
 
 #Coping the final-viral-score.tsv for every MAG from folder RAW_DATA to RESULT_DIR. While doing so we rename it: 1) putting the name of the folder from RAW_DATA as a viable = PART 2)then giving the final-viral-score.tsv a new name in .txt format
 
-for folder in Perhe*
+for folder in Common_name*
 do
 	PART=${folder}
 	OUT_FILE="$RESULT_DIR/${PART}_virsorter.txt"

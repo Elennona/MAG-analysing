@@ -10,24 +10,24 @@
 #SBATCH --cpus-per-task=10
 #SBATCH --mem-per-cpu=1000
 
+
 #defying input and output folders
-	RESULT_DIR=/path_to_folder_with_output
-	RAW_DATA=/path_to_virsorter2_output
+	RESULT_DIR=/path_to_output_folder
+	RAW_DATA=/path_to_folder_with_checkv_output
 
 #create an output directory and moving to the folder with raw data
 	mkdir $RESULT_DIR
 	cd $RAW_DATA
 
-#Coping the final-viral-combined.fa for every MAG from folder RAW_DATA to RESULT_DIR. While doing so we rename it: 1) putting the name of the folder from RAW_DATA as a viable = PART 2)then giving the final-viral-combined.fa a new name in .fa format
-
+#creates a string of names, by picking them from the folder name. Removes everything before Virsorterpred
 for folder in Common_name*
 do
-	PART=${folder}
-	OUT_FILE="$RESULT_DIR/${PART}.fa"
+	SUB_ID=${folder##}
 
-	cp $folder/final-viral-combined.fa $OUT_FILE
+#gives a new name for the file and copy it to output folder
+	cp $folder/quality_summary* $RESULT_DIR/qs_${SUB_ID}.tsv
 
 done
 
-#created 30.3.22 by ED
+#created 2.3.22 by ED
 
