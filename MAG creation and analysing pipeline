@@ -6,4 +6,6 @@ Annotate found proteins with Hmmer3 with imgvr and/or pvog databases (for viral 
 
 To identify MAGs correctly, each MAG must have unique_name = subject_ID+MAG_ID
 
-For data visualisation use R. The following tolls were installed in supercomputer, and access via terminal Cygwin64 Terminal: Virsorter2, CheckV, Prodigal, Hmmer3.
+To create and process MAGs I used Puhti supercomputer and bash scipts. The following tools were installed in supercomputer, and access via terminal Cygwin64 Terminal: Virsorter2, CheckV, Prodigal, Hmmer3.
+
+For data visualisation I use R. 
