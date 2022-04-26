@@ -1,4 +1,4 @@
-#All tools are used as conda environments. For each tool a new enviroemnt is created and the tool is installed via bioconda
+#All tools are used as conda environments. For each tool a new environment is created and the tool is installed via bioconda
 
 conda create --name tool_name
 sinteractive
