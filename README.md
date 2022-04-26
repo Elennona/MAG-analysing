@@ -1,4 +1,4 @@
-# MAG-analysing
-Analysing viral prophage sequenced from metagenomic sequences. The DNA was extracted from infant fecal samples and sequenced. This pipeline will teach you how to make MAGs form metagenomic sequences, predict the viral (prophage) sequences in MAGs, check their quality, predict proteins and annotate them.
+# MAGs creation and prosessing
+The pipeline that creats bacterial MAGs (Metagenome-Assembled Genomes) and prosesses them. Then identifies prophage sequences from MAGs.
 
 This is a guide for beginners in bioinformatics, so I will try to make as detailed as possible. 
